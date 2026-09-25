@@ -3,7 +3,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import VideoOrPoster from "@/components/VideoOrPoster";
 import Footer from "@/components/Footer";
-import { serviceBlocks, serviceSteps, galleryStepText } from "@/data/site";
+import { serviceBlocks, serviceSteps, contactHref } from "@/data/site";
 import { fadeUp, scaleIn } from "@/lib/motion";
 
 export const metadata: Metadata = {
@@ -22,10 +22,10 @@ export default function ServicesPage() {
         <Reveal as="section" className="svc-hero" variants={scaleIn} aria-label="Services showreel">
           <VideoOrPoster
             src="/video/services.mp4"
-            poster="/img/sama-hero.jpg"
-            posterAlt="Sama Elite Matrimony embossed logo"
-            posterW={1920}
-            posterH={1280}
+            poster="/img/showreel-poster.jpg"
+            posterAlt="DIRXN services showreel"
+            posterW={1200}
+            posterH={1200}
           />
         </Reveal>
 
@@ -49,10 +49,11 @@ export default function ServicesPage() {
                   </h2>
                 </Reveal>
                 <Reveal as="div" variants={fadeUp} delay={0.1} className="svc-block-lede">
-                  {Array.from({ length: 4 }).map((_, i) => (
+                  {block.lede.map((line, i) => (
                     <span key={i}>
-                      {galleryStepText}
-                      {i < 3 && <br />}
+                      {line}
+                      {i < block.lede.length - 1 && <br className="d" />}
+                      {i < block.lede.length - 1 && " "}
                     </span>
                   ))}
                 </Reveal>
@@ -72,7 +73,7 @@ export default function ServicesPage() {
                       <li key={step}>{step}</li>
                     ))}
                   </ul>
-                  <a className="btn-block" href="mailto:hello@dirxn.com">
+                  <a className="btn-block" href={contactHref}>
                     Let&rsquo;s build together
                   </a>
                 </Reveal>

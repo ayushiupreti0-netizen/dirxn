@@ -27,6 +27,8 @@ export default function WorkPage() {
               imageAlt={card.imageAlt}
               title={card.title}
               label={card.label}
+              barBg={card.barBg}
+              barFg={card.barFg}
               delay={Math.min((i % 2) * 0.08, 0.16)}
             />
           ))}

@@ -2,13 +2,14 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import { ArrowRight } from "./icons";
 import { fadeUp, scaleIn } from "@/lib/motion";
+import { contactHref } from "@/data/site";
 
 export default function Footer({ topPad }: { topPad?: string }) {
   return (
     <footer className="jam" style={topPad ? { paddingTop: topPad } : undefined}>
       <Reveal className="jam-row" variants={fadeUp}>
         <h2>Let&rsquo;s Jam.</h2>
-        <a className="btn-start" href="mailto:hello@dirxn.com">
+        <a className="btn-start" href={contactHref}>
           Get Started <ArrowRight className="arrow" />
         </a>
       </Reveal>

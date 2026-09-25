@@ -34,10 +34,10 @@ function Home() {
       <Reveal as="section" className="showreel" variants={scaleIn} aria-label="Showreel">
         <VideoOrPoster
           src="/video/showreel.mp4"
-          poster="/img/hero-laptop.jpg"
-          posterAlt="DIRXN website work shown on a laptop"
-          posterW={1920}
-          posterH={1282}
+          poster="/img/showreel-poster.jpg"
+          posterAlt="DIRXN showreel"
+          posterW={1200}
+          posterH={1200}
         />
       </Reveal>
 

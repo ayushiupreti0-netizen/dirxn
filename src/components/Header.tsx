@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { nav } from "@/data/site";
+import { nav, contactHref } from "@/data/site";
 import { ArrowRight } from "./icons";
 import { ease } from "@/lib/motion";
 
@@ -24,8 +24,7 @@ export default function Header() {
     };
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/work" ? pathname === "/work" : href === "/services" ? pathname === "/services" : false;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="site-header">
@@ -42,7 +41,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link className="btn-connect" href="mailto:hello@dirxn.com">
+        <Link className="btn-connect" href={contactHref}>
           Connect with Us <ArrowRight className="arrow" />
         </Link>
 
@@ -84,7 +83,7 @@ export default function Header() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.35, delay: 0.05 * nav.length, ease }}
             >
-              <Link className="btn-connect-mobile" href="mailto:hello@dirxn.com" onClick={() => setOpen(false)}>
+              <Link className="btn-connect-mobile" href={contactHref} onClick={() => setOpen(false)}>
                 Connect with Us <ArrowRight className="arrow" />
               </Link>
             </motion.div>

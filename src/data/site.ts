@@ -1,6 +1,11 @@
+import { caseStudies } from "./work";
+
+export const contactEmail = "dirxndesignstudio@gmail.com";
+export const contactHref = `mailto:${contactEmail}`;
+
 export const nav = [
   { href: "/work", label: "Work" },
-  { href: "/#about", label: "About" },
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
 ] as const;
 
@@ -9,8 +14,6 @@ export type FeaturedProject = {
   href: string;
   image: string;
   imageAlt: string;
-  imageW: number;
-  imageH: number;
   variant: "a" | "b";
   barBg: string;
   barFg: string;
@@ -22,81 +25,19 @@ export type FeaturedProject = {
   title: string;
 };
 
-export const featuredProjects: FeaturedProject[] = [
-  {
-    slug: "sama-elite-matrimony-1",
-    href: "/sama-elite-matrimony",
-    image: "/img/work-prink.jpg",
-    imageAlt: "Prink pink guava cans",
-    imageW: 1920,
-    imageH: 1063,
-    variant: "a",
-    barBg: "#112638",
-    barFg: "#fff",
-    circleFg: "#112638",
-    labels: ["Matchmaking", "Brand & Website"],
-    title: "Sama Elite Matrimony",
-  },
-  {
-    slug: "sama-elite-matrimony-2",
-    href: "/sama-elite-matrimony",
-    image: "/img/work-carsdaily.jpg",
-    imageAlt: "CarsDaily branded van",
-    imageW: 1920,
-    imageH: 1080,
-    variant: "a",
-    barBg: "#fdf6e2",
-    barFg: "#000",
-    circleFg: "#000",
-    labels: ["Matchmaking", "Brand & Website"],
-    title: "Sama Elite Matrimony",
-  },
-  {
-    slug: "sama-elite-matrimony-3",
-    href: "/sama-elite-matrimony",
-    image: "/img/work-unfltrd.jpg",
-    imageAlt: "un:fltrd branded pebbles",
-    imageW: 916,
-    imageH: 571,
-    variant: "a",
-    barBg: "#560a1f",
-    barFg: "#fff",
-    circleFg: "#560a1f",
-    labels: ["Matchmaking", "Brand & Website"],
-    title: "Sama Elite Matrimony",
-  },
-  {
-    slug: "the-balance-story",
-    href: "/sama-elite-matrimony",
-    image: "/img/work-balance-story.jpg",
-    imageAlt: "The Balance Story chocolate packaging",
-    imageW: 918,
-    imageH: 571,
-    variant: "b",
-    barBg: "#fffbf2",
-    barFg: "#f87c46",
-    pillBorder: "#d2cec7",
-    pillBg: "#f87c46",
-    pillFg: "#fff",
-    labels: ["2025", "Health and Wellness", "Branding"],
-    title: "The Balance Story",
-  },
-  {
-    slug: "athlete-world",
-    href: "/sama-elite-matrimony",
-    image: "/img/work-athlete-world.jpg",
-    imageAlt: "Athlete World brand campaign",
-    imageW: 917,
-    imageH: 570,
-    variant: "b",
-    barBg: "#111111",
-    barFg: "#fff",
-    pillBg: "#fff",
-    pillFg: "#111",
-    labels: ["2025", "Sports", "Branding"],
-    title: "Athlete  World",
-  },
-];
+/** Homepage "Selected work" — one card per case study, in order. */
+export const featuredProjects: FeaturedProject[] = caseStudies.map((c) => ({
+  slug: c.slug,
+  href: `/work/${c.slug}`,
+  image: c.card.src,
+  imageAlt: c.card.alt,
+  variant: "a",
+  barBg: c.color.bar,
+  barFg: c.color.text,
+  circleFg: c.color.bar,
+  labels: [c.industry, c.tagline],
+  title: c.title,
+}));
 
 export type Service = { num: string; line1: string; line2?: string; desc: string };
 
@@ -121,27 +62,63 @@ export const services: Service[] = [
   {
     num: "04",
     line1: "Digital Marketing",
-    desc: "Good packaging tells a story before anyone reads a word. We design packs that stand out, feel great and connect.",
+    desc: "We create on-brand digital campaigns and content that help your brand stay visible, connect with the right audience and drive meaningful engagement.",
   },
 ];
 
-export const workCards = Array.from({ length: 8 }).map((_, i) => ({
-  key: `sama-${i}`,
-  href: "/sama-elite-matrimony",
-  image: "/img/work-prink.jpg",
-  imageAlt: "Prink pink guava cans",
-  title: "Sama Elite Matrimony",
-  label: "Matchmaking",
+/** Work page grid — same four studies as the homepage. */
+export const workCards = caseStudies.map((c) => ({
+  key: c.slug,
+  href: `/work/${c.slug}`,
+  image: c.card.src,
+  imageAlt: c.card.alt,
+  title: c.title,
+  label: c.industry,
+  barBg: c.color.bar,
+  barFg: c.color.text,
 }));
 
-export const galleryStepText =
-  "No matter the size of your brand, we design logos";
-
-export const serviceBlocks = [
-  { num: "01", title: "Logo\nDesign" },
-  { num: "02", title: "Brand\nIdentity" },
-  { num: "03", title: "Website\nDesign" },
-  { num: "04", title: "Digital\nMarketing" },
+/** Services page blocks. `lede` lines are rendered with line breaks on desktop. */
+export const serviceBlocks: { num: string; title: string; lede: string[] }[] = [
+  {
+    num: "01",
+    title: "Logo\nDesign",
+    lede: [
+      "No matter the size of your brand, we design logos",
+      "that are clear, unique and built to last. We make sure",
+      "it works across everything - your website, packaging,",
+      "social media and more.",
+    ],
+  },
+  {
+    num: "02",
+    title: "Brand\nIdentity",
+    lede: [
+      "We create visual systems that bring your brand to life",
+      "and make it easy to recognise anywhere. We make",
+      "sure your brand feels consistent, confident & true to",
+      "who you are.",
+    ],
+  },
+  {
+    num: "03",
+    title: "Website\nDesign",
+    lede: [
+      "We build websites that not only look great but also",
+      "work smoothly and load fast. Every site is designed",
+      "to reflect your brand, feel good to use and help you",
+      "reach your goals.",
+    ],
+  },
+  {
+    num: "04",
+    title: "Digital\nMarketing",
+    lede: [
+      "We create on-brand digital campaigns and content",
+      "that help your brand stay visible, connect with the",
+      "right audience and drive meaningful engagement.",
+    ],
+  },
 ];
 
 export const serviceSteps = [
@@ -151,15 +128,4 @@ export const serviceSteps = [
   "Icon and wordmark variants",
   "Usage guidelines and file export",
   "Logo animation (optional)",
-];
-
-export const samaGallerySlots: { wide?: boolean; label: string; x: string; y: string }[] = [
-  { wide: true, label: "Logo Video\nAnimation", x: "57.7rem", y: "15.7rem" },
-  { label: "Logo\nVariations", x: "13.8rem", y: "17.8rem" },
-  { label: "Logo\nVariations", x: "13.8rem", y: "17.8rem" },
-  { wide: true, label: "Website\nPhotos", x: "61.8rem", y: "15.2rem" },
-  { wide: true, label: "Website Video Animation", x: "28.3rem", y: "21.3rem" },
-  { label: "Branding\nitems", x: "14rem", y: "17.3rem" },
-  { label: "Branding\nitems", x: "14rem", y: "17.3rem" },
-  { wide: true, label: "Words from the founder", x: "28.3rem", y: "21.5rem" },
 ];

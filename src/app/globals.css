@@ -148,7 +148,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   margin-top: 20.4rem;
   height: 108.4rem;
   overflow: hidden;
-  background: #c8c5be;
+  background: #000;
   position: relative;
 }
 .showreel video,
@@ -158,6 +158,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   object-fit: cover;
   object-position: center bottom;
 }
+/* The showreel is a square text animation on black: letterbox it rather than crop the words. */
+.showreel video { object-fit: contain; object-position: center; }
 
 /* ---------- Home: intro ----------------------------------------------------- */
 .intro {
@@ -397,8 +399,8 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 .work-card .work-bar {
   position: relative;
   height: 15.2rem;
-  background: #112638;
-  color: var(--white);
+  background: var(--bar-bg, #112638);
+  color: var(--bar-fg, var(--white));
 }
 .work-card .work-title {
   position: absolute;
@@ -508,6 +510,9 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   height: 100%;
   object-fit: cover;
 }
+/* Logos: letterbox on a white panel instead of cropping. */
+.slot.contain { background: var(--white); border: 1px solid var(--grey-line); }
+.slot.contain > img { padding: 9rem; }
 .slot-label {
   position: absolute;
   left: var(--x);
@@ -519,13 +524,50 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
 }
 .case-page .jam { padding-top: 19.9rem; }
 
+/* ---------- About page ----------------------------------------------------- */
+.about-hero {
+  margin: 5.3rem 10.8rem 0 10.6rem;
+  height: 78.9rem;
+  overflow: hidden;
+  position: relative;
+  background: var(--placeholder);
+}
+.about-hero img { object-fit: cover; }
+.about-body {
+  padding: 15rem 0 0 12rem;
+  max-width: 126rem;
+}
+.about-lede {
+  font-size: 6rem;
+  line-height: 8rem;
+  font-weight: 600;
+  letter-spacing: -.005em;
+}
+.about-copy {
+  margin-top: 5.5rem;
+  max-width: 104rem;
+  font-size: max(2.4rem, 15px);
+  line-height: 4rem;
+  color: var(--grey-text);
+}
+.about-copy p + p { margin-top: 3rem; }
+.about-copy strong { color: var(--black); font-weight: 600; }
+.about-close {
+  margin-top: 7rem;
+  font-size: 3.6rem;
+  line-height: 5rem;
+  font-weight: 600;
+  color: var(--black);
+}
+.about-page .jam { padding-top: 24rem; }
+
 /* ---------- Services page -------------------------------------------------- */
 .svc-hero {
   position: relative;
   margin: 5.3rem 10.8rem 0 10.6rem;
   height: 78.9rem;
   overflow: hidden;
-  background: #0b1d15;
+  background: #000;
 }
 .svc-hero video,
 .svc-hero img {
@@ -534,6 +576,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   object-fit: cover;
   object-position: center 30%;
 }
+.svc-hero video { object-fit: contain; object-position: center; }
 .svc-hero::after {
   content: "";
   position: absolute;
@@ -735,6 +778,7 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   .jam,
   .work-page .jam,
   .case-page .jam,
+  .about-page .jam,
   .services-page .jam { padding: 96px 20px 32px; }
   .jam-row { padding: 0; gap: 16px; flex-wrap: wrap; }
   .jam-row h2 { font-size: clamp(40px, 10vw, 72px); }
@@ -774,6 +818,14 @@ button { font: inherit; border: 0; background: none; color: inherit; cursor: poi
   .case-gallery { grid-template-columns: 1fr; gap: 16px; padding: 56px 20px 0; }
   .slot { height: auto; aspect-ratio: 16 / 10; }
   .slot-label { left: 24px; top: 24px; font-size: clamp(22px, 5vw, 40px); line-height: 1.25; }
+
+  .about-hero { margin: 24px 20px 0; height: auto; aspect-ratio: 16 / 9; }
+  .about-body { padding: 48px 20px 0; max-width: none; }
+  .about-lede { font-size: clamp(26px, 6vw, 48px); line-height: 1.3; }
+  .about-copy { margin-top: 24px; font-size: 16px; line-height: 1.65; }
+  .about-copy p + p { margin-top: 16px; }
+  .about-close { margin-top: 32px; font-size: clamp(20px, 4.5vw, 30px); line-height: 1.35; }
+  .slot.contain > img { padding: 24px; }
 
   .svc-hero { margin: 24px 20px 0; height: auto; aspect-ratio: 16 / 9; }
   .svc-blocks { padding: 72px 20px 0; }
