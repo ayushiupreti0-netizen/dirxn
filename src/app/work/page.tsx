@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
 import WorkCard from "@/components/WorkCard";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
+import { LineReveal } from "@/components/TextReveal";
 import { workCards } from "@/data/site";
-import { fadeUp } from "@/lib/motion";
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <div className="work-page">
+      <ScrollProgress />
       <main>
-        <Reveal as="div" variants={fadeUp}>
-          <h1 className="page-title">Our Work</h1>
-        </Reveal>
+        <LineReveal as="h1" className="page-title" amount={0.6} breaks={false}>
+          <>Our Work</>
+        </LineReveal>
 
         <section className="work-grid" aria-label="Projects">
           {workCards.map((card, i) => (

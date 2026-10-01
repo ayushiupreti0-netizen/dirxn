@@ -1,88 +1,51 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
-import VideoOrPoster from "@/components/VideoOrPoster";
 import Footer from "@/components/Footer";
-import { serviceBlocks, serviceSteps, contactHref } from "@/data/site";
-import { fadeUp, scaleIn } from "@/lib/motion";
+import DirectionBand from "@/components/DirectionBand";
+import BentoGrid from "@/components/BentoGrid";
+import ServiceList from "@/components/ServiceList";
+import { LineReveal, WordReveal } from "@/components/TextReveal";
+import { servicesHero, servicesBento, serviceItems, servicesCtaLabel } from "@/data/services";
+import { fadeUp } from "@/lib/motion";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Logo design, brand identity, website design & development and digital marketing by DIRXN.",
+  description:
+    "Brand identity development, logo design, website design & development and digital marketing by DIRXN, one team from first call to launch.",
 };
 
 export default function ServicesPage() {
   return (
     <div className="services-page">
       <main>
-        <Reveal as="div" variants={fadeUp}>
-          <h1 className="page-title">Services</h1>
-        </Reveal>
-
-        <Reveal as="section" className="svc-hero" variants={scaleIn} aria-label="Services showreel">
-          <VideoOrPoster
-            src="/video/services.mp4"
-            poster="/img/showreel-poster.jpg"
-            posterAlt="DIRXN services showreel"
-            posterW={1200}
-            posterH={1200}
-          />
-        </Reveal>
-
-        <section className="svc-blocks">
-          {serviceBlocks.map((block) => {
-            const [line1, line2] = block.title.split("\n");
-            return (
-              <article className="svc-block" key={block.num}>
-                <Reveal as="div" variants={fadeUp} className="svc-block-num">
-                  {block.num}
-                </Reveal>
-                <Reveal as="div" variants={fadeUp} delay={0.05}>
-                  <h2 className="svc-block-title">
-                    {line1}
-                    {line2 && (
-                      <>
-                        <br />
-                        {line2}
-                      </>
-                    )}
-                  </h2>
-                </Reveal>
-                <Reveal as="div" variants={fadeUp} delay={0.1} className="svc-block-lede">
-                  {block.lede.map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i < block.lede.length - 1 && <br className="d" />}
-                      {i < block.lede.length - 1 && " "}
-                    </span>
-                  ))}
-                </Reveal>
-
-                <Reveal as="div" variants={fadeUp} delay={0.15} className="svc-block-body">
-                  <div className="svc-block-media">
-                    <Image
-                      src="/img/service-logo-design.jpg"
-                      alt="3D green logo mark render"
-                      fill
-                      sizes="(max-width: 1100px) 100vw, 47vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <ul className="svc-steps">
-                    {serviceSteps.map((step) => (
-                      <li key={step}>{step}</li>
-                    ))}
-                  </ul>
-                  <a className="btn-block" href={contactHref}>
-                    Let&rsquo;s build together
-                  </a>
-                </Reveal>
-              </article>
-            );
-          })}
+        {/* ---- Hero: same shape as the About page ------------------------- */}
+        <section className="ab-hero">
+          <Reveal as="div" variants={fadeUp}>
+            <p className="ab-eyebrow">{servicesHero.eyebrow}</p>
+          </Reveal>
+          <LineReveal as="h1" className="ab-title" amount={0.3} stagger={0.14}>
+            <>{servicesHero.headline[0]}</>
+            <em>{servicesHero.headline[1]}</em>
+          </LineReveal>
+          <WordReveal as="p" className="ab-sub" text={servicesHero.sub} delay={0.5} stagger={0.03} />
         </section>
+
+        {/* ---- Bento: clips and stills from the work ---------------------- */}
+        <BentoGrid tiles={servicesBento} />
+
+        {/* ---- The services, one row each --------------------------------- */}
+        <section className="sv-list" aria-labelledby="sv-list-title">
+          <Reveal as="div" variants={fadeUp}>
+            <p className="ab-eyebrow" id="sv-list-title">
+              What we offer
+            </p>
+          </Reveal>
+          <ServiceList items={serviceItems} ctaLabel={servicesCtaLabel} />
+        </section>
+
+        <DirectionBand />
+        <Footer />
       </main>
-      <Footer />
     </div>
   );
 }

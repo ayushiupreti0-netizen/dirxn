@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   async redirects() {
     // Case studies moved under /work/<slug>.
-    return [{ source: "/sama-elite-matrimony", destination: "/work/sama-elite-matrimony", permanent: true }];
+    return [
+      { source: "/sama-elite-matrimony", destination: "/work/sama-elite-matrimony", permanent: true },
+      { source: "/work/tcci", destination: "/work/kodeline", permanent: true },
+    ];
   },
 };
 

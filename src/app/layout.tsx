@@ -18,14 +18,21 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dirxn.com"),
   title: {
-    default: "DIRXN — We design brands and build websites",
-    template: "%s — DIRXN",
+    default: "DIRXN | Design & Development Studio",
+    template: "%s | DIRXN",
   },
   description:
     "DIRXN is a design studio. We combine strategy and creativity to build brand identities, logos, websites and digital marketing that give your brand a direction.",
-  icons: { icon: "/favicon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-64.png", type: "image/png", sizes: "64x64" },
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
-    title: "DIRXN — We design brands and build websites",
+    title: "DIRXN | Design & Development Studio",
     description:
       "Brand identity, logo design, website design & development and digital marketing.",
     images: ["/img/og-image.jpg"],

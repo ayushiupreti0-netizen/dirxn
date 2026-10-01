@@ -46,23 +46,63 @@ export const services: Service[] = [
     num: "01",
     line1: "Brand Identity",
     line2: "Development",
-    desc: "A brand is more than a logo. We help you show up the same way everywhere - Online, offline and everything between.",
+    desc: "We shape the look, feel, and personality of your brand so everything feels clear, consistent, and genuinely you.",
   },
   {
     num: "02",
     line1: "Logo Design",
-    desc: "We make logos that feel right. Not just good-looking but meaningful, memorable and built to last for your brand.",
+    desc: "We create logos that are distinctive, and easy to remember giving your brand a mark you can truly own.",
   },
   {
     num: "03",
     line1: "Website Design",
     line2: "& Development",
-    desc: "Your website should work hard and look good. We design sites that are easy to use and built to grow with you.",
+    desc: "We design and build websites that not only look good but feel easy to use, and actually help your business connect with people.",
   },
   {
     num: "04",
     line1: "Digital Marketing",
     desc: "We create on-brand digital campaigns and content that help your brand stay visible, connect with the right audience and drive meaningful engagement.",
+  },
+];
+
+/** Footer link columns (rendered above the big wordmark). */
+export type FooterColumn = { heading: string; links: { label: string; href: string }[] };
+
+export const footerColumns: FooterColumn[] = [
+  {
+    heading: "DIRXN",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Work", href: "/work" },
+      { label: "About Us", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Contact Us", href: contactHref },
+    ],
+  },
+  {
+    heading: "Industries",
+    links: [
+      { label: "Matchmaking", href: "/work/sama-elite-matrimony" },
+      { label: "AdTech", href: "/work/ooter" },
+      { label: "Fitness", href: "/work/the-trained-crew" },
+      { label: "Tech", href: "/work/kodeline" },
+    ],
+  },
+  {
+    heading: "Services",
+    links: [
+      { label: "Brand Identity", href: "/services" },
+      { label: "Logo Design", href: "/services" },
+      { label: "Website Design", href: "/services" },
+      { label: "Website Development", href: "/services" },
+      { label: "Digital Marketing", href: "/services" },
+      { label: "Social Media Creatives", href: "/services" },
+    ],
+  },
+  {
+    heading: "Featured projects",
+    links: caseStudies.map((c) => ({ label: c.title, href: `/work/${c.slug}` })),
   },
 ];
 
@@ -77,55 +117,3 @@ export const workCards = caseStudies.map((c) => ({
   barBg: c.color.bar,
   barFg: c.color.text,
 }));
-
-/** Services page blocks. `lede` lines are rendered with line breaks on desktop. */
-export const serviceBlocks: { num: string; title: string; lede: string[] }[] = [
-  {
-    num: "01",
-    title: "Logo\nDesign",
-    lede: [
-      "No matter the size of your brand, we design logos",
-      "that are clear, unique and built to last. We make sure",
-      "it works across everything - your website, packaging,",
-      "social media and more.",
-    ],
-  },
-  {
-    num: "02",
-    title: "Brand\nIdentity",
-    lede: [
-      "We create visual systems that bring your brand to life",
-      "and make it easy to recognise anywhere. We make",
-      "sure your brand feels consistent, confident & true to",
-      "who you are.",
-    ],
-  },
-  {
-    num: "03",
-    title: "Website\nDesign",
-    lede: [
-      "We build websites that not only look great but also",
-      "work smoothly and load fast. Every site is designed",
-      "to reflect your brand, feel good to use and help you",
-      "reach your goals.",
-    ],
-  },
-  {
-    num: "04",
-    title: "Digital\nMarketing",
-    lede: [
-      "We create on-brand digital campaigns and content",
-      "that help your brand stay visible, connect with the",
-      "right audience and drive meaningful engagement.",
-    ],
-  },
-];
-
-export const serviceSteps = [
-  "Discover and brand alignment",
-  "Moodboard and creative direction",
-  "Typography and symbol design",
-  "Icon and wordmark variants",
-  "Usage guidelines and file export",
-  "Logo animation (optional)",
-];
